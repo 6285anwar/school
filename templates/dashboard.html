@@ -1,0 +1,108 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block content%}
+
+
+
+
+<div class="row">
+  <div class="grid-margin col-lg-12 stretch-card">
+    <div class="card ">
+      <div class="card-body ">
+        <h4 class="card-title">Teacher's</h4>
+        <div class="text-right m-2">
+          <a href="{% url 'addteacher' %}"><button type="button" class="btn btn-success">Add</button></a>
+        </div>
+
+
+        <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."title="Type in a name">
+        <div class="table-responsive pt-2">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Profile-Picture</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>PhoneNo</th>
+                <th>Room Number</th>
+                <th>Subjects</th>
+
+
+              </tr>
+            </thead>
+            <tbody id="myTable">
+              {% for i in teach %}
+              <tr onclick="window.location='{% url 'profile' i.id %}'" style="cursor:pointer">
+                <td>{{i.id}}</td>
+                <td>
+                  <img src="{{i.photo.url}}" alt="image" />
+
+                </td>
+                <td>{{i.firstname}}</td>
+                <td>{{i.lastname}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone}}</td>
+                <td>{{i.room}}</td>
+                <td>{{i.subjects}}</td>
+              </tr>
+              {% endfor %}
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+
+{% endblock %}

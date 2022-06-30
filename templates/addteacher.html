@@ -1,0 +1,83 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block content%}
+
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Add .CSV file</h4>
+        
+        <form class="forms-sample" action="{% url 'upload_csv' %}" enctype="multipart/form-data">
+            {% csrf_token %} 
+         
+            <div class="form-group">
+                <label for="exampleInputName1">File</label>
+                <input type="file" class="form-control " name="csvfile" id="exampleInputName1" placeholder="Profile Picture" required>
+              </div>
+              
+          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 grid-margin ">
+    <div class="card">
+      <div class="card-body text-center">
+        <h2 class="card-title">OR</h2>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Add Details</h4>
+        
+        <form class="forms-sample" action="{% url 'typeinput' %}" method="post"  enctype="multipart/form-data">
+            {% csrf_token %} 
+          <div class="form-group">
+            <label for="exampleInputName1">First Name</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="First Name" name="fn">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName1">Last Name</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Last Name" name="ln">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail3"  placeholder="Email" name="e">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName1">Phone Number</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Phone Number" name="pn">
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="exampleInputName1">Profile Picture</label>
+            <input type="file" class="form-control " name="pic" id="exampleInputName1" placeholder="Profile Picture" required>
+          </div>
+          
+   
+          <div class="form-group">
+            <label for="exampleInputName1">Room Number</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Room Number" name="rn">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName1">Subjects</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Subjects" name="s">
+          </div>
+          
+          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
